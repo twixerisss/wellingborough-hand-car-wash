@@ -3,697 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wellingborough Hand Car Wash | Premium Hand Car Wash & Valeting</title>
+    <title>Wellingborough Hand Car Wash — Premium Hand Car Wash & Valeting</title>
     <meta name="description" content="Wellingborough's trusted hand car wash on Northampton Road. Premium hand washing, valeting services, and attention to detail.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
         :root {
-            --navy: #0B1426;
-            --blue: #0EA5E9;
-            --foam: #F0F9FF;
-            --cyan: #22D3EE;
-            --silver: #CBD5E1;
-            --navy-mid: #111D35;
+            --primary: #0EA5E9;
+            --primary-light: #38BDF8;
+            --primary-dark: #0284C7;
+            --primary-rgb: 14,165,233;
+            --bg: #09090b; --bg-raised: #111113; --bg-card: rgba(255,255,255,0.03); --bg-card-hover: rgba(255,255,255,0.06); --bg-glass: rgba(255,255,255,0.04);
+            --text: #fafafa; --text-secondary: #a1a1aa; --text-muted: #71717a;
+            --border: rgba(255,255,255,0.06); --border-strong: rgba(255,255,255,0.1); --border-accent: rgba(var(--primary-rgb), 0.2);
+            --radius: 12px; --radius-sm: 8px; --radius-lg: 16px; --radius-xl: 24px;
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--navy);
-            color: var(--foam);
-            overflow-x: hidden;
-            line-height: 1.7;
-        }
-
-        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
-
-        /* ── NAVBAR ── */
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 20px 40px;
-            display: flex; justify-content: space-between; align-items: center;
-            transition: all 0.4s ease;
-        }
-        .navbar.scrolled {
-            background: rgba(11, 20, 38, 0.85);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border-bottom: 1px solid rgba(14, 165, 233, 0.15);
-            padding: 14px 40px;
-        }
-        .nav-brand {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 700; font-size: 1.2rem;
-            color: var(--cyan);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-        .nav-menu { display: flex; gap: 32px; list-style: none; }
-        .nav-menu a {
-            color: var(--silver); text-decoration: none; font-size: 0.88rem;
-            font-weight: 500; transition: color 0.3s;
-        }
-        .nav-menu a:hover { color: var(--cyan); }
-        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
-        .nav-toggle span {
-            display: block; width: 26px; height: 2px; background: var(--foam);
-            margin: 6px 0; transition: all 0.3s;
-        }
-        .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-        .nav-toggle.open span:nth-child(2) { opacity: 0; }
-        .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-
-        /* ── HERO ── */
-        .hero {
-            position: relative; min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center;
-            background: linear-gradient(180deg, #060D1A 0%, var(--navy) 40%, #0D1F3C 100%);
-            overflow: hidden;
-        }
-        .bubble-container {
-            position: absolute; inset: 0; pointer-events: none; overflow: hidden;
-        }
-        .bubble {
-            position: absolute; bottom: -80px; border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(14,165,233,0.06);
-            animation: rise linear infinite;
-        }
-        @keyframes rise {
-            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { transform: translateY(-110vh) translateX(30px) scale(0.6); opacity: 0; }
-        }
-        .hero-content { position: relative; z-index: 2; padding: 0 24px; max-width: 800px; }
-        .hero h1 {
-            font-size: clamp(2.8rem, 7vw, 5.5rem);
-            font-weight: 800; line-height: 1.05;
-            margin-bottom: 20px;
-        }
-        .shimmer-text {
-            display: inline-block;
-            background: linear-gradient(90deg, var(--foam) 0%, var(--foam) 40%, rgba(34,211,238,0.9) 50%, var(--foam) 60%, var(--foam) 100%);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-        @keyframes shimmer {
-            0% { background-position: 100% 0; }
-            100% { background-position: -100% 0; }
-        }
-        .hero p {
-            font-size: 1.1rem; color: var(--silver);
-            max-width: 500px; margin: 0 auto 36px;
-        }
-        .hero-cta {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 16px 36px; border-radius: 60px;
-            background: linear-gradient(135deg, var(--blue), var(--cyan));
-            color: var(--navy); font-weight: 700; font-size: 1rem;
-            text-decoration: none; transition: all 0.3s;
-            box-shadow: 0 4px 30px rgba(14,165,233,0.3);
-        }
-        .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 40px rgba(14,165,233,0.45);
-        }
-
-        /* ── STATS (WATER DROPS) ── */
-        .stats-section { padding: 80px 24px; }
-        .stats-row {
-            max-width: 900px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
-            text-align: center;
-        }
-        .stat-drop {
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            width: 130px; height: 150px; margin: 0 auto;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            transform: rotate(180deg);
-            background: linear-gradient(135deg, rgba(14,165,233,0.15), rgba(34,211,238,0.08));
-            border: 1px solid rgba(14,165,233,0.25);
-            position: relative;
-        }
-        .stat-drop-inner {
-            transform: rotate(180deg);
-            display: flex; flex-direction: column; align-items: center;
-        }
-        .stat-drop h3 {
-            font-size: 1.5rem; color: var(--cyan); font-weight: 700;
-        }
-        .stat-drop p {
-            font-size: 0.78rem; color: var(--silver); margin-top: 4px;
-        }
-
-        /* ── SECTION COMMON ── */
-        .section-wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        section { padding: 100px 0; }
-        .section-tag {
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px;
-            color: var(--cyan); font-weight: 600; margin-bottom: 10px;
-        }
-        .section-heading {
-            font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
-            margin-bottom: 16px; color: var(--foam);
-        }
-        .section-sub {
-            color: var(--silver); font-size: 1.05rem; max-width: 560px;
-        }
-
-        /* ── PRICING TIERS ── */
-        .pricing { background: linear-gradient(180deg, var(--navy), #0D1F3C); }
-        .pricing-cards {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 28px; margin-top: 56px; align-items: stretch;
-        }
-        .pricing-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px; padding: 40px 32px;
-            position: relative; transition: all 0.35s;
-        }
-        .pricing-card:hover {
-            border-color: rgba(14,165,233,0.3);
-            transform: translateY(-4px);
-        }
-        .pricing-card.featured {
-            transform: scale(1.05);
-            border-color: var(--blue);
-            background: rgba(14,165,233,0.06);
-            box-shadow: 0 8px 60px rgba(14,165,233,0.15);
-        }
-        .pricing-card.featured:hover { transform: scale(1.05) translateY(-4px); }
-        .popular-badge {
-            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--blue), var(--cyan));
-            color: var(--navy); font-size: 0.72rem; font-weight: 700;
-            padding: 6px 20px; border-radius: 50px;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-        .pricing-card h3 { font-size: 1.4rem; margin-bottom: 8px; }
-        .pricing-card .price {
-            font-size: 2.8rem; font-weight: 800; color: var(--cyan);
-            font-family: 'Outfit', sans-serif;
-        }
-        .pricing-card .price span { font-size: 1rem; font-weight: 400; color: var(--silver); }
-        .pricing-card ul {
-            list-style: none; margin: 24px 0 32px; padding: 0;
-        }
-        .pricing-card ul li {
-            padding: 8px 0; font-size: 0.92rem; color: var(--silver);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex; align-items: center; gap: 10px;
-        }
-        .pricing-card ul li::before {
-            content: ''; width: 6px; height: 6px;
-            background: var(--cyan); border-radius: 50%; flex-shrink: 0;
-        }
-        .pricing-card .card-btn {
-            display: block; text-align: center; padding: 14px;
-            border-radius: 12px; text-decoration: none;
-            font-weight: 600; font-size: 0.92rem; transition: all 0.3s;
-            border: 1px solid rgba(14,165,233,0.3); color: var(--cyan);
-        }
-        .pricing-card .card-btn:hover {
-            background: rgba(14,165,233,0.1);
-        }
-        .pricing-card.featured .card-btn {
-            background: linear-gradient(135deg, var(--blue), var(--cyan));
-            color: var(--navy); border: none;
-        }
-        .pricing-card.featured .card-btn:hover { opacity: 0.9; }
-
-        /* Addons */
-        .addons-row {
-            display: flex; gap: 20px; justify-content: center;
-            margin-top: 36px; flex-wrap: wrap;
-        }
-        .addon-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 14px; padding: 24px 32px;
-            text-align: center; transition: all 0.3s; min-width: 200px;
-        }
-        .addon-card:hover { border-color: rgba(14,165,233,0.3); transform: translateY(-3px); }
-        .addon-card h4 { font-size: 1.05rem; margin-bottom: 4px; }
-        .addon-card .price { color: var(--cyan); font-weight: 700; font-size: 1.2rem; }
-
-        /* ── BEFORE/AFTER SLIDER ── */
-        .ba-section { background: #0D1F3C; }
-        .ba-slider {
-            position: relative; max-width: 800px; margin: 48px auto 0;
-            border-radius: 16px; overflow: hidden;
-            aspect-ratio: 16/9; cursor: col-resize;
-            user-select: none; -webkit-user-select: none;
-        }
-        .ba-slider img {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; object-fit: cover;
-        }
-        .ba-after { clip-path: inset(0 50% 0 0); }
-        .ba-handle {
-            position: absolute; top: 0; bottom: 0;
-            left: 50%; width: 4px; transform: translateX(-50%);
-            background: var(--cyan); z-index: 5;
-        }
-        .ba-handle::after {
-            content: ''; position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px; height: 40px; border-radius: 50%;
-            background: var(--cyan);
-            box-shadow: 0 0 20px rgba(34,211,238,0.4);
-            border: 3px solid var(--foam);
-        }
-        .ba-label {
-            position: absolute; top: 16px; padding: 4px 14px;
-            border-radius: 6px; font-size: 0.75rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 1px; z-index: 4;
-        }
-        .ba-label.before { right: 16px; background: rgba(0,0,0,0.6); color: var(--foam); }
-        .ba-label.after { left: 16px; background: rgba(14,165,233,0.7); color: var(--navy); }
-
-        /* ── REVIEWS SCROLL ── */
-        .reviews-section { overflow: hidden; }
-        .reviews-track-outer {
-            overflow: hidden; margin-top: 48px; position: relative;
-        }
-        .reviews-track {
-            display: flex; gap: 24px;
-            animation: scroll-left 20s linear infinite;
-            width: max-content;
-        }
-        .reviews-track:hover { animation-play-state: paused; }
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .review-card {
-            flex-shrink: 0; width: 340px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px; padding: 32px;
-        }
-        .review-card .stars { color: #FBBF24; font-size: 1rem; margin-bottom: 14px; }
-        .review-card blockquote {
-            font-style: italic; color: var(--silver);
-            font-size: 0.92rem; margin-bottom: 18px; line-height: 1.6;
-        }
-        .review-card .author { font-weight: 600; font-size: 0.88rem; color: var(--foam); }
-
-        /* ── CONTACT CTA ── */
-        .contact-cta {
-            text-align: center;
-            background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(34,211,238,0.06));
-            border-radius: 24px; padding: 64px 40px;
-            max-width: 800px; margin: 0 auto;
-            border: 1px solid rgba(14,165,233,0.2);
-            position: relative; overflow: hidden;
-        }
-        .contact-cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 12px; }
-        .contact-cta p { color: var(--silver); margin-bottom: 28px; font-size: 1.05rem; }
-        .contact-cta .droplet-icon {
-            display: inline-block; margin-bottom: 20px;
-        }
-        .contact-info-row {
-            display: flex; gap: 40px; justify-content: center;
-            flex-wrap: wrap; margin-top: 32px;
-        }
-        .contact-info-item { text-align: center; }
-        .contact-info-item .label {
-            font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px;
-            color: var(--cyan); margin-bottom: 6px;
-        }
-        .contact-info-item .value { color: var(--foam); font-size: 0.95rem; }
-        .contact-info-item a { color: var(--foam); text-decoration: none; }
-        .contact-info-item a:hover { color: var(--cyan); }
-
-        /* ── MAP ── */
-        .map-section { padding: 0 24px 80px; }
-        .map-frame {
-            max-width: 1200px; margin: 0 auto;
-            border-radius: 20px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .map-frame iframe { width: 100%; height: 400px; border: none; display: block; }
-
-        /* ── FOOTER ── */
-        footer {
-            text-align: center; padding: 40px 24px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-        }
-        footer p { color: rgba(203,213,225,0.5); font-size: 0.82rem; }
-        footer a { color: var(--cyan); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-
-        /* ── SCROLL REVEAL ── */
-        .reveal {
-            opacity: 0; transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* ── MOBILE ── */
-        @media (max-width: 768px) {
-            .nav-toggle { display: block; }
-            .nav-menu {
-                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
-                background: rgba(11,20,38,0.97); backdrop-filter: blur(16px);
-                flex-direction: column; padding: 100px 40px; gap: 24px;
-                transition: right 0.35s ease;
-            }
-            .nav-menu.open { right: 0; }
-            .pricing-cards { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
-            .pricing-card.featured { transform: scale(1); }
-            .pricing-card.featured:hover { transform: translateY(-4px); }
-            .stats-row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-            .stat-drop { width: 110px; height: 130px; }
-            .ba-slider { aspect-ratio: 4/3; }
-            .contact-info-row { flex-direction: column; gap: 20px; }
-            .navbar { padding: 16px 20px; }
-        }
-
-        @media (max-width: 480px) {
-            .stats-row { grid-template-columns: 1fr; }
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(9,9,11,0.6); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--border); }
+        .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; } .nav-logo span { color: var(--primary); }
+        .nav-links { display: flex; gap: 0.25rem; list-style: none; background: var(--bg-glass); border: 1px solid var(--border); border-radius: 100px; padding: 0.25rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 0.4rem 0.9rem; border-radius: 100px; transition: all 0.2s ease; } .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+        .nav-cta { position: relative; display: inline-flex; align-items: center; gap: 0.4rem; background: var(--primary); color: #fff; padding: 0.5rem 1.2rem; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.8rem; transition: all 0.2s ease; overflow: hidden; }
+        .nav-cta::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 50%); pointer-events: none; } .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.4); }
+        .menu-toggle { display: none; background: var(--bg-glass); border: 1px solid var(--border); color: var(--text); font-size: 1.1rem; cursor: pointer; width: 40px; height: 40px; border-radius: var(--radius-sm); align-items: center; justify-content: center; }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 8rem 2rem 6rem; overflow: hidden; }
+        .hero-glow { position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 800px; height: 600px; background: radial-gradient(ellipse at center, rgba(var(--primary-rgb), 0.12) 0%, transparent 70%); pointer-events: none; filter: blur(80px); }
+        .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); }
+        .hero-content { text-align: center; position: relative; z-index: 2; max-width: 720px; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bg-glass); border: 1px solid var(--border); padding: 0.35rem 1rem 0.35rem 0.6rem; border-radius: 100px; font-size: 0.78rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 2rem; backdrop-filter: blur(12px); }
+        .hero-badge .pulse { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; position: relative; } .hero-badge .pulse::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: rgba(34,197,94,0.3); animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0; transform: scale(2); } }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
+        .hero h1 .gradient { background: linear-gradient(135deg, var(--primary), var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 540px; margin: 0 auto 2.5rem; line-height: 1.7; }
+        .hero-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.9rem; padding: 0.75rem 1.75rem; border-radius: 100px; text-decoration: none; transition: all 0.2s ease; border: none; cursor: pointer; position: relative; overflow: hidden; }
+        .btn-primary { background: var(--primary); color: #fff; } .btn-primary::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 50%); pointer-events: none; } .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(var(--primary-rgb), 0.35); }
+        .btn-ghost { background: var(--bg-glass); color: var(--text); border: 1px solid var(--border-strong); backdrop-filter: blur(8px); } .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); transform: translateY(-2px); }
+        .stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .stat-item { text-align: center; padding: 2rem 1rem; border-right: 1px solid var(--border); } .stat-item:last-child { border-right: none; }
+        .stat-number { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; letter-spacing: -0.04em; color: var(--text); } .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; font-weight: 500; }
+        section { padding: 6rem 2rem; } .container { max-width: 1100px; margin: 0 auto; }
+        .section-label { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary); font-weight: 600; margin-bottom: 1rem; } .section-label::before { content: ''; width: 24px; height: 1px; background: var(--primary); }
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem; } .section-desc { color: var(--text-secondary); font-size: 1rem; max-width: 540px; line-height: 1.7; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; } .about-image { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/3; border: 1px solid var(--border); background: var(--bg-raised); } .about-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; } .about-image:hover img { transform: scale(1.03); }
+        .about-text h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; letter-spacing: -0.02em; margin-bottom: 1rem; } .about-text p { color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; margin-top: 3rem; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+        .service-card { background: var(--bg); padding: 2rem; transition: all 0.3s ease; position: relative; } .service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.06) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s ease; } .service-card:hover::before { opacity: 1; } .service-card:hover { background: var(--bg-raised); }
+        .service-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(var(--primary-rgb), 0.1); border: 1px solid rgba(var(--primary-rgb), 0.15); border-radius: var(--radius-sm); font-size: 1.2rem; margin-bottom: 1.25rem; }
+        .service-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; } .service-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; } .service-price { display: inline-flex; align-items: center; margin-top: 1rem; color: var(--primary); font-weight: 600; font-size: 0.85rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.5rem; margin-top: 3rem; } .gallery-item { border-radius: var(--radius); overflow: hidden; aspect-ratio: 1; position: relative; background: var(--bg-raised); border: 1px solid var(--border); } .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; } .gallery-item:hover img { transform: scale(1.06); } .gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.5) 100%); pointer-events: none; opacity: 0; transition: opacity 0.3s ease; } .gallery-item:hover::after { opacity: 1; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-top: 3rem; }
+        .review-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; backdrop-filter: blur(8px); transition: all 0.3s ease; } .review-card:hover { border-color: var(--border-strong); background: var(--bg-card-hover); }
+        .review-stars { display: flex; gap: 2px; margin-bottom: 1rem; } .review-stars .star { color: #f59e0b; font-size: 0.9rem; } .review-text { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.25rem; }
+        .review-author-row { display: flex; align-items: center; gap: 0.75rem; } .review-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(var(--primary-rgb), 0.15); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; color: var(--primary); } .review-author { font-weight: 600; font-size: 0.88rem; } .review-source { color: var(--text-muted); font-size: 0.75rem; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 3rem; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+        .contact-panel { background: var(--bg); padding: 2.5rem; } .contact-panel h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+        .hours-table { width: 100%; border-collapse: collapse; } .hours-table tr { border-bottom: 1px solid var(--border); } .hours-table tr:last-child { border-bottom: none; } .hours-table td { padding: 0.65rem 0; font-size: 0.88rem; } .hours-table td:first-child { font-weight: 500; color: var(--text); } .hours-table td:last-child { text-align: right; color: var(--text-secondary); }
+        .contact-info { display: flex; flex-direction: column; gap: 1.25rem; } .contact-item { display: flex; align-items: center; gap: 1rem; }
+        .contact-icon { width: 44px; height: 44px; flex-shrink: 0; background: var(--bg-glass); border: 1px solid var(--border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.2s ease; } .contact-item:hover .contact-icon { border-color: var(--border-accent); background: rgba(var(--primary-rgb), 0.06); }
+        .contact-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; } .contact-value { font-weight: 500; font-size: 0.92rem; } .contact-value a { color: var(--text); text-decoration: none; transition: color 0.2s; } .contact-value a:hover { color: var(--primary); }
+        .map-container { margin-top: 2rem; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); height: 320px; } .map-container iframe { width: 100%; height: 100%; border: 0; filter: invert(90%) hue-rotate(180deg) brightness(0.9) contrast(1.2) saturate(0.3); }
+        .cta-section { text-align: center; padding: 6rem 2rem; position: relative; overflow: hidden; } .cta-glow { position: absolute; bottom: -40%; left: 50%; transform: translateX(-50%); width: 700px; height: 500px; background: radial-gradient(ellipse at center, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%); pointer-events: none; filter: blur(80px); } .cta-section .container { position: relative; z-index: 1; }
+        .cta-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem; } .cta-section p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2rem; max-width: 460px; margin-left: auto; margin-right: auto; }
+        footer { border-top: 1px solid var(--border); padding: 2rem; } .footer-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; } .footer-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text-secondary); } .footer-links { display: flex; gap: 1.5rem; } .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color 0.2s; } .footer-links a:hover { color: var(--text); } .footer-credit { color: var(--text-muted); font-size: 0.78rem; } .footer-credit a { color: var(--text-secondary); text-decoration: none; } .footer-credit a:hover { color: var(--primary); }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); } .reveal.visible { opacity: 1; transform: translateY(0); } .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+        @media (max-width: 768px) { .nav-links { display: none; } .menu-toggle { display: flex; } .nav-links.open { display: flex; flex-direction: column; position: absolute; top: calc(100% + 1px); left: 1rem; right: 1rem; background: rgba(17,17,19,0.95); backdrop-filter: blur(20px); padding: 0.75rem; border-radius: var(--radius); border: 1px solid var(--border); gap: 0.25rem; } .nav-links.open a { padding: 0.65rem 1rem; border-radius: var(--radius-sm); } .hero { padding: 7rem 1.5rem 4rem; } .hero h1 { font-size: clamp(2.2rem, 8vw, 3rem); } .about-grid, .contact-grid { grid-template-columns: 1fr; } .stat-item { border-right: none; border-bottom: 1px solid var(--border); } .stat-item:last-child { border-bottom: none; } .stats-strip { grid-template-columns: repeat(2, 1fr); } .services-grid { grid-template-columns: 1fr; } .hero-buttons { flex-direction: column; align-items: center; } section { padding: 4rem 1.5rem; } }
+        @media (max-width: 480px) { .stats-strip { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
-        <a href="#" class="nav-brand">Wellingborough Hand Car Wash</a>
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#reviews">Reviews</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </button>
+    <nav>
+        <a href="#" class="nav-logo">Wellingborough <span>Hand Car Wash</span></a>
+        <ul class="nav-links" id="navLinks"><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#contact">Contact</a></li></ul>
+        <a href="tel:07939204683" class="nav-cta">Call Now</a>
+        <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero" id="hero">
-        <div class="bubble-container" id="bubbles"></div>
+    <section class="hero"><div class="hero-glow"></div><div class="hero-grid"></div>
         <div class="hero-content">
-            <h1 class="shimmer-text">Spotless. Every Time.</h1>
-            <p>Premium hand car wash and valeting on Northampton Road, Wellingborough. No machines, just skilled hands and a perfect finish.</p>
-            <a href="tel:07939204683" class="hero-cta">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                Call 07939 204683
-            </a>
-        </div>
-    </section>
-
-    <!-- STATS -->
-    <section class="stats-section">
-        <div class="stats-row">
-            <div class="stat-drop reveal">
-                <div class="stat-drop-inner">
-                    <h3 id="stat1">7</h3>
-                    <p>Days Open</p>
-                </div>
-            </div>
-            <div class="stat-drop reveal">
-                <div class="stat-drop-inner">
-                    <h3><span id="stat2">50</span>+</h3>
-                    <p>Cars Daily</p>
-                </div>
-            </div>
-            <div class="stat-drop reveal">
-                <div class="stat-drop-inner">
-                    <h3><span id="stat3">100</span>%</h3>
-                    <p>Hand Wash</p>
-                </div>
-            </div>
-            <div class="stat-drop reveal">
-                <div class="stat-drop-inner">
-                    <h3>5-Star</h3>
-                    <p>Service</p>
-                </div>
+            <div class="hero-badge reveal"><span class="pulse"></span>Northampton Road, Wellingborough</div>
+            <h1 class="reveal reveal-delay-1">Spotless.<br><span class="gradient">Every Time.</span></h1>
+            <p class="reveal reveal-delay-2">Premium hand car wash and valeting on Northampton Road, Wellingborough. No machines, just skilled hands and a perfect finish.</p>
+            <div class="hero-buttons reveal reveal-delay-3">
+                <a href="tel:07939204683" class="btn btn-primary">Call 07939 204683 &rarr;</a>
+                <a href="#services" class="btn btn-ghost">View Services</a>
             </div>
         </div>
     </section>
 
-    <!-- PRICING -->
-    <section class="pricing" id="services">
-        <div class="section-wrap">
-            <div class="section-tag reveal">Our Services</div>
-            <h2 class="section-heading reveal">Choose Your Wash</h2>
-            <p class="section-sub reveal">From a quick rinse to a full showroom valet &mdash; we have the perfect option for your car.</p>
-
-            <div class="pricing-cards">
-                <div class="pricing-card reveal">
-                    <h3>Mini Valet</h3>
-                    <div class="price">&pound;8</div>
-                    <ul>
-                        <li>Exterior rinse</li>
-                        <li>Full soap hand wash</li>
-                        <li>Hand dry finish</li>
-                    </ul>
-                    <a href="tel:07939204683" class="card-btn">Get Started</a>
-                </div>
-
-                <div class="pricing-card featured reveal">
-                    <div class="popular-badge">Most Popular</div>
-                    <h3>Full Wash</h3>
-                    <div class="price">&pound;12</div>
-                    <ul>
-                        <li>Complete exterior clean</li>
-                        <li>Tyre shine</li>
-                        <li>All windows cleaned</li>
-                        <li>Air freshener</li>
-                    </ul>
-                    <a href="tel:07939204683" class="card-btn">Get Started</a>
-                </div>
-
-                <div class="pricing-card reveal">
-                    <h3>Premium Valet</h3>
-                    <div class="price">&pound;30</div>
-                    <ul>
-                        <li>Full exterior wash &amp; dry</li>
-                        <li>Interior vacuum</li>
-                        <li>Dashboard polish</li>
-                        <li>Leather treatment</li>
-                        <li>Tyre shine</li>
-                    </ul>
-                    <a href="tel:07939204683" class="card-btn">Get Started</a>
-                </div>
-            </div>
-
-            <div class="addons-row reveal">
-                <div class="addon-card">
-                    <h4>Engine Bay Clean</h4>
-                    <div class="price">&pound;20</div>
-                </div>
-                <div class="addon-card">
-                    <h4>Wheel Detail</h4>
-                    <div class="price">&pound;10</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BEFORE/AFTER -->
-    <section class="ba-section" id="gallery">
-        <div class="section-wrap">
-            <div class="section-tag reveal">Gallery</div>
-            <h2 class="section-heading reveal">See the Difference</h2>
-            <p class="section-sub reveal">Drag the slider to compare before and after.</p>
-
-            <div class="ba-slider" id="baSlider">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800" alt="Before wash" class="ba-before">
-                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800" alt="After wash" class="ba-after" id="baAfter">
-                <div class="ba-handle" id="baHandle"></div>
-                <span class="ba-label before">Before</span>
-                <span class="ba-label after">After</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="reviews-section" id="reviews">
-        <div class="section-wrap">
-            <div class="section-tag reveal">Reviews</div>
-            <h2 class="section-heading reveal">What Our Customers Say</h2>
-        </div>
-        <div class="reviews-track-outer">
-            <div class="reviews-track" id="reviewsTrack">
-                <div class="review-card">
-                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <blockquote>"Took my car in absolutely filthy and it came out looking brand new. Incredible attention to detail and so reasonably priced."</blockquote>
-                    <div class="author">Sarah M.</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <blockquote>"Great value for money! My car always comes out looking spotless. Wouldn't go anywhere else in Wellingborough."</blockquote>
-                    <div class="author">James T.</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <blockquote>"Friendly staff and really quick service. In and out in no time with a perfect finish. Highly recommend!"</blockquote>
-                    <div class="author">David R.</div>
-                </div>
-                <!-- duplicated for infinite scroll -->
-                <div class="review-card">
-                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <blockquote>"Took my car in absolutely filthy and it came out looking brand new. Incredible attention to detail and so reasonably priced."</blockquote>
-                    <div class="author">Sarah M.</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <blockquote>"Great value for money! My car always comes out looking spotless. Wouldn't go anywhere else in Wellingborough."</blockquote>
-                    <div class="author">James T.</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <blockquote>"Friendly staff and really quick service. In and out in no time with a perfect finish. Highly recommend!"</blockquote>
-                    <div class="author">David R.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="section-wrap">
-            <div class="contact-cta reveal">
-                <div class="droplet-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 60" fill="none">
-                        <path d="M24 4C24 4 4 28 4 40C4 51 13 58 24 58C35 58 44 51 44 40C44 28 24 4 24 4Z" fill="rgba(14,165,233,0.2)" stroke="#22D3EE" stroke-width="2"/>
-                    </svg>
-                </div>
-                <h2>Ready for a Spotless Finish?</h2>
-                <p>Drive in today &mdash; no appointment needed.</p>
-                <a href="tel:07939204683" class="hero-cta">
-                    Call 07939 204683
-                </a>
-                <div class="contact-info-row">
-                    <div class="contact-info-item">
-                        <div class="label">Address</div>
-                        <div class="value">260 Northampton Road, Wellingborough</div>
-                    </div>
-                    <div class="contact-info-item">
-                        <div class="label">Hours</div>
-                        <div class="value">Mon-Sat 08:00-18:00 | Sun 09:00-17:00</div>
-                    </div>
-                    <div class="contact-info-item">
-                        <div class="label">Phone</div>
-                        <div class="value"><a href="tel:07939204683">07939 204683</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MAP -->
-    <div class="map-section">
-        <div class="map-frame reveal">
-            <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Wellingborough+Hand+Car+Wash+260+Northampton+Road+Wellingborough" allowfullscreen loading="lazy"></iframe>
-        </div>
+    <div class="stats-strip">
+        <div class="stat-item"><div class="stat-number" data-target="7">7</div><div class="stat-label">Days Open</div></div>
+        <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Cars Daily</div></div>
+        <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Hand Wash</div></div>
+        <div class="stat-item"><div class="stat-number">5-Star</div><div class="stat-label">Service</div></div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 Wellingborough Hand Car Wash. All rights reserved.</p>
-        <p style="margin-top:8px;">Built by <a href="https://twix.tf" target="_blank" rel="noopener">Harry</a></p>
-    </footer>
+    <section id="about"><div class="container"><span class="section-label reveal">About Us</span>
+        <div class="about-grid">
+            <div class="about-image reveal"><img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800" alt="Car wash" loading="lazy"></div>
+            <div class="about-text reveal reveal-delay-1">
+                <h3>Premium Hand Car Wash</h3>
+                <p>Wellingborough Hand Car Wash is the area's trusted destination for premium hand washing and valeting on Northampton Road. No machines, just skilled hands and meticulous attention to detail.</p>
+                <p>Open 7 days a week, we wash over 50 cars daily with a range of services from a quick rinse to a full showroom valet. Drive in today &mdash; no appointment needed.</p>
+            </div>
+        </div>
+    </div></section>
+
+    <section id="services"><div class="container"><span class="section-label reveal">Our Services</span>
+        <h2 class="section-title reveal reveal-delay-1">Choose Your Wash</h2>
+        <p class="section-desc reveal reveal-delay-2">From a quick rinse to a full showroom valet &mdash; the perfect option for your car.</p>
+        <div class="services-grid reveal reveal-delay-3">
+            <div class="service-card"><div class="service-icon">&#128703;</div><h3>Mini Valet</h3><p>Exterior rinse, full soap hand wash, hand dry finish.</p><div class="service-price">&pound;8</div></div>
+            <div class="service-card"><div class="service-icon">&#10024;</div><h3>Full Wash</h3><p>Complete exterior clean, tyre shine, all windows cleaned, air freshener.</p><div class="service-price">&pound;12</div></div>
+            <div class="service-card"><div class="service-icon">&#127775;</div><h3>Premium Valet</h3><p>Full exterior wash &amp; dry, interior vacuum, dashboard polish, leather treatment, tyre shine.</p><div class="service-price">&pound;30</div></div>
+            <div class="service-card"><div class="service-icon">&#9881;</div><h3>Engine Bay Clean</h3><p>Professional engine bay cleaning and degreasing.</p><div class="service-price">&pound;20</div></div>
+            <div class="service-card"><div class="service-icon">&#128737;</div><h3>Wheel Detail</h3><p>Deep clean and shine for your alloy wheels.</p><div class="service-price">&pound;10</div></div>
+        </div>
+    </div></section>
+
+    <section id="gallery"><div class="container"><span class="section-label reveal">Our Work</span>
+        <h2 class="section-title reveal reveal-delay-1">See the Difference</h2>
+        <div class="gallery-grid reveal reveal-delay-2">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800" alt="Before wash" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800" alt="After wash" loading="lazy"></div>
+        </div>
+    </div></section>
+
+    <section id="reviews"><div class="container"><span class="section-label reveal">Testimonials</span>
+        <h2 class="section-title reveal reveal-delay-1">What Our Customers Say</h2>
+        <div class="reviews-grid reveal reveal-delay-2">
+            <div class="review-card"><div class="review-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div><div class="review-text">"Took my car in absolutely filthy and it came out looking brand new. Incredible attention to detail and so reasonably priced."</div><div class="review-author-row"><div class="review-avatar">SM</div><div><div class="review-author">Sarah M.</div><div class="review-source">Google Review</div></div></div></div>
+            <div class="review-card"><div class="review-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div><div class="review-text">"Great value for money! My car always comes out looking spotless. Wouldn't go anywhere else in Wellingborough."</div><div class="review-author-row"><div class="review-avatar">JT</div><div><div class="review-author">James T.</div><div class="review-source">Google Review</div></div></div></div>
+            <div class="review-card"><div class="review-stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div><div class="review-text">"Friendly staff and really quick service. In and out in no time with a perfect finish. Highly recommend!"</div><div class="review-author-row"><div class="review-avatar">DR</div><div><div class="review-author">David R.</div><div class="review-source">Google Review</div></div></div></div>
+        </div>
+    </div></section>
+
+    <section id="contact"><div class="container"><span class="section-label reveal">Get In Touch</span>
+        <h2 class="section-title reveal reveal-delay-1">Contact & Hours</h2>
+        <div class="contact-grid reveal reveal-delay-2">
+            <div class="contact-panel"><h3>Opening Hours</h3><table class="hours-table"><tr><td>Mon &ndash; Sat</td><td>08:00 &ndash; 18:00</td></tr><tr><td>Sunday</td><td>09:00 &ndash; 17:00</td></tr></table></div>
+            <div class="contact-panel"><h3>Find Us</h3><div class="contact-info">
+                <div class="contact-item"><div class="contact-icon">&#128205;</div><div><div class="contact-label">Address</div><div class="contact-value">260 Northampton Road, Wellingborough</div></div></div>
+                <div class="contact-item"><div class="contact-icon">&#128222;</div><div><div class="contact-label">Phone</div><div class="contact-value"><a href="tel:07939204683">07939 204683</a></div></div></div>
+            </div></div>
+        </div>
+        <div class="map-container reveal reveal-delay-3"><iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Wellingborough+Hand+Car+Wash+260+Northampton+Road+Wellingborough" allowfullscreen loading="lazy"></iframe></div>
+    </div></section>
+
+    <section class="cta-section"><div class="cta-glow"></div><div class="container">
+        <h2 class="reveal">Ready for a Spotless Finish?</h2>
+        <p class="reveal reveal-delay-1">Drive in today &mdash; no appointment needed.</p>
+        <a href="tel:07939204683" class="btn btn-primary reveal reveal-delay-2">Call 07939 204683 &rarr;</a>
+    </div></section>
+
+    <footer><div class="footer-content">
+        <span class="footer-logo">Wellingborough Hand Car Wash</span>
+        <div class="footer-links"><a href="#about">About</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a></div>
+        <span class="footer-credit">Built by <a href="https://twix.tf" target="_blank">Harry</a></span>
+    </div></footer>
 
     <script>
-        // ── Bubble Generator ──
-        (function() {
-            const container = document.getElementById('bubbles');
-            for (let i = 0; i < 18; i++) {
-                const b = document.createElement('div');
-                b.classList.add('bubble');
-                const size = Math.random() * 50 + 10;
-                b.style.width = size + 'px';
-                b.style.height = size + 'px';
-                b.style.left = Math.random() * 100 + '%';
-                b.style.animationDuration = (Math.random() * 9 + 6) + 's';
-                b.style.animationDelay = (Math.random() * 6) + 's';
-                container.appendChild(b);
-            }
-        })();
-
-        // ── Navbar scroll ──
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 80);
-        });
-
-        // ── Mobile menu ──
-        const navToggle = document.getElementById('navToggle');
-        const navMenu = document.getElementById('navMenu');
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('open');
-            navMenu.classList.toggle('open');
-        });
-        navMenu.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                navToggle.classList.remove('open');
-                navMenu.classList.remove('open');
-            });
-        });
-
-        // ── Before/After Slider ──
-        (function() {
-            const slider = document.getElementById('baSlider');
-            const after = document.getElementById('baAfter');
-            const handle = document.getElementById('baHandle');
-            let dragging = false;
-
-            function move(clientX) {
-                const rect = slider.getBoundingClientRect();
-                let pct = ((clientX - rect.left) / rect.width) * 100;
-                pct = Math.max(2, Math.min(98, pct));
-                after.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
-                handle.style.left = pct + '%';
-            }
-
-            slider.addEventListener('mousedown', (e) => { dragging = true; move(e.clientX); });
-            window.addEventListener('mousemove', (e) => { if (dragging) move(e.clientX); });
-            window.addEventListener('mouseup', () => { dragging = false; });
-            slider.addEventListener('touchstart', (e) => { dragging = true; move(e.touches[0].clientX); }, {passive: true});
-            window.addEventListener('touchmove', (e) => { if (dragging) move(e.touches[0].clientX); }, {passive: true});
-            window.addEventListener('touchend', () => { dragging = false; });
-        })();
-
-        // ── Counter Animation ──
-        function animateCounter(el, target, suffix) {
-            suffix = suffix || '';
-            let current = 0;
-            const step = Math.max(1, Math.floor(target / 40));
-            const interval = setInterval(() => {
-                current += step;
-                if (current >= target) { current = target; clearInterval(interval); }
-                el.textContent = current + suffix;
-            }, 30);
-        }
-        let countersRun = false;
-        const statsObs = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !countersRun) {
-                countersRun = true;
-                animateCounter(document.getElementById('stat1'), 7);
-                animateCounter(document.getElementById('stat2'), 50);
-                animateCounter(document.getElementById('stat3'), 100);
-            }
-        }, {threshold: 0.3});
-        statsObs.observe(document.querySelector('.stats-section'));
-
-        // ── Scroll Reveal ──
-        const revealObs = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, {threshold: 0.1});
-        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+        const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', function(e) { e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if (t) { t.scrollIntoView({ behavior: 'smooth' }); document.getElementById('navLinks').classList.remove('open'); } }); });
     </script>
 </body>
 </html>
